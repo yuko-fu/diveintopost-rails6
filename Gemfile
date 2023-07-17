@@ -30,6 +30,8 @@ gem 'seed-fu', '~> 2.3'
 
 # Authentication
 gem 'devise'
+gem 'rubocop', require: false
+gem 'rexml'
 
 group :development, :test do
   gem 'awesome_print'
