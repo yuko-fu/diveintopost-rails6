@@ -21,6 +21,13 @@ class AgendasController < ApplicationController
     end
   end
 
+  def destroy
+    @agenda = Agenda.find(params[:id])
+    if current_user.id || assign.team.owner.id
+      @agenda = Agenda.destroy
+    end
+  end
+
   private
 
   def set_agenda
