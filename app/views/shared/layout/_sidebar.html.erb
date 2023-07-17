@@ -31,12 +31,18 @@
         <% @working_team.agendas.each do |agenda| %>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
-              <i class="fa fa-circle-o nav-icon"></i>
+            <tr>
+              <td><i class="fa fa-circle-o nav-icon"></i>
               <p>
-                <%= agenda.title %>
+                <%= agenda.title %></td>
                 <i class="right fa fa-angle-left"></i>
+                
+                <% if current_user.id == agenda.user.id || current_user.id == agenda.team.owner_id  %>
+                <object><%= link_to '削除',agenda_path(agenda), method: :delete, data: { confirm: 'Are you sure?' } %></object>
+                <% end %>
               </p>
             </a>
+            </tr>
             <ul class="nav nav-treeview" style="display: block;">
               <% agenda.articles.each do |article| %>
                 <li class="nav-item">

@@ -23,8 +23,9 @@ class AgendasController < ApplicationController
 
   def destroy
     @agenda = Agenda.find(params[:id])
-    if current_user.id || assign.team.owner.id
-      @agenda = Agenda.destroy
+    if current_user.id == @agenda.user.id || current_user.id == @agenda.team.owner_id
+      @agenda.destroy
+      redirect_to dashboard_path, notice: '消しました'
     end
   end
 
